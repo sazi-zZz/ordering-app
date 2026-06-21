@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
+
+.chelsea-market-regular {
+  font-family: "Chelsea Market", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root{
+    --theme-color: rgb(3, 3, 77);
+}
+
+*{
+    font-family: "Chelsea Market", system-ui;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: rgb(1, 1, 25);
+    position: relative;
+}
+
+#app-container{
+    width: fit-content;
+    margin: auto;
+    background-color: white;
+}
+
+#inside{
+    padding: 50px 30px;
+}
+
+header{
+    background-image: url(img/aestheticBanner.gif);
+    background-color: #b2b2b2;
+    background-blend-mode:darken;
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 60px 60px;
+    text-shadow: 2px 2px 5px black;
+    text-align: center;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-info{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-image img{
+    height: 100px;
+    border-radius: 5px;
+}
+
+.add-item-btn button{
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--theme-color);
+    border: none;
+    color: white;
+}
+
+/* order container */
+#order-container{
+    margin-top: 40px;
+}
+
+#order-list{
+    margin-top: 10px;
+}
+
+.order-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+#order-list-end-divider{
+    height: 4px;
+    background-color: var(--theme-color);
+}
+
+#total-order{
+    display: flex;
+    justify-content: space-between;
+}
+
+#place-order-btn{
+    margin-top: 10px;
+}
+
+#place-order-btn button{
+    background-color: var(--theme-color);
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#success-message{
+    display: none;
+    color: green;
+    padding: 10px;
+    border: 2px solid darkgreen;
+    background-color: lightgreen;
+    text-align: center;
+}
+
+/* card details modal */
+#card-details{
+    display: none;
+    /* display: flex; */
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    background-color: white;
+    width: 400px;
+    height: fit-content;
+    padding: 30px 40px 38px 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid var(--theme-color);
+    box-shadow: 1px 1px 10px var(--theme-color);
+}
+
+form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+form input{
+    padding: 10px;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+form input + input{
+    margin-top: 10px;
+}
+
+form button[type="submit"]{
+    background-color: var(--theme-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+form button[type="button"]{
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
