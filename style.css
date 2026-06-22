@@ -59,7 +59,7 @@ header{
 }
 
 .item-image img{
-    height: 100px;
+    width: 110px;
     border-radius: 5px;
 }
 
@@ -72,6 +72,14 @@ header{
     background-color: var(--theme-color);
     border: none;
     color: white;
+}
+
+.remove-item-btn {
+    cursor: pointer;
+
+    &:hover{
+        text-decoration: underline;
+    }
 }
 
 /* order container */
