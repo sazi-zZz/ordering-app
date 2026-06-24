@@ -71,7 +71,7 @@ function renderOrderItems(orderItems) {
                 </div>
 
                 <div id="place-order-btn">
-                    <button data-total-price="${totalPrice}">Pay & Place Order</button>
+                    <button class="payment-btn" data-total-price="${totalPrice}">Pay & Place Order</button>
                 </div>
     `
 
@@ -111,8 +111,9 @@ document.getElementById('item-container').addEventListener('click', function (e)
     }
 })
 
-// removing items 
+
 document.getElementById('order-container').addEventListener('click', function (e) {
+    // removing items
     if (e.target.classList.contains('remove-item-btn')) {
         const itemName_r = e.target.dataset.itemName
 
@@ -122,13 +123,71 @@ document.getElementById('order-container').addEventListener('click', function (e
             return item.name !== itemName_r
         })
 
-        console.log(currentStorage_r)
-
         localStorage.setItem('orderItems', JSON.stringify(newCurrentStorage))
-
-        console.log(newCurrentStorage)
 
         renderOrderItems(JSON.parse(localStorage.getItem('orderItems')))
     }
 
+    // payment 
+    if (e.target.classList.contains('payment-btn')) {
+        const totalPrice = e.target.dataset.totalPrice
+        if (totalPrice > 0) {
+            document.getElementById('card-details').style.display = "flex"
+            document.getElementById("card-details").innerHTML = `
+                <div id="card-details-heading">
+                    <h2>Enter Card Details</h2>
+                </div>
+                <form id="card-details-form" action="#">
+                    <input type="text" name="cardHolder" id="cardHolder" placeholder="Card Holder's Name..." required>
+                    <input type="text" name="cardNumber" id="cardNumber" placeholder="Car Number..." required>
+                    <input type="text" name="cvc" id="cvc" placeholder="CVC..." required>
+                    <button type="submit" class="final-pay" data-total-price="${totalPrice}">Pay $${totalPrice}</button>
+                    <button type="button" class="remove-modal">Cancel</button>
+                </form>
+            `
+        } else {
+            document.getElementById('card-details').style.display = "flex"
+        }
+    }
+})
+
+document.getElementById('card-details').addEventListener('click', function (e) {
+    // final payment process
+    if (e.target.classList.contains('final-pay')) {
+        const totalPrice = e.target.dataset.totalPrice
+        document.getElementById('card-details-form').addEventListener('submit', (e) => {
+            e.preventDefault()
+            console.log('paid!')
+
+            document.getElementById("card-details").innerHTML = `
+                        <h4 id="payment-ongoing">
+                            Payment of $${totalPrice} is in Progress...
+                        </h4>
+                    `
+
+            setTimeout(() => {
+                document.getElementById("card-details").innerHTML = `<h4 id="payment-done">
+                            Payment of $${totalPrice} is Completed!
+                            </h4>`
+
+                setTimeout(() => {
+                    document.getElementById('card-details').style.display = "none"
+                    document.getElementById('order-container').innerHTML = `
+                        <div id="success-message">
+                            <h3>
+                                Your Order is Comming!!
+                            </h3>
+                        </div>
+                `
+                    localStorage.setItem("orderItems", JSON.stringify([]))
+                }, 3000);
+
+            }, 3000);
+        })
+    }
+
+    // cancel payment
+    if (e.target.classList.contains('remove-modal')) {
+        document.getElementById('card-details').style.display = "none"
+    }
 })

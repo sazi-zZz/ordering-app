@@ -120,7 +120,6 @@ header{
 }
 
 #success-message{
-    display: none;
     color: green;
     padding: 10px;
     border: 2px solid darkgreen;
